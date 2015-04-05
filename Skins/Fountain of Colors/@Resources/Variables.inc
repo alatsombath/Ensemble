@@ -1,9 +1,8 @@
 [Variables]
-BarWidth=14
+BarWidth=12
 BarHeight=(#WORKAREAHEIGHT#/2)
-BarGapX=3.5R
+BarGapX=4
 BarGapY=0
-BarOrientation=Vertical
 
 FFTAttack=350
 FFTDecay=350
@@ -53,61 +52,6 @@ Shuffle=1
 1=Random,Random,Random|Random,Random,Random
 2=Random,Random,Random|Random,Random,Random
 3=Random,Random,Random|Random,Random,Random
-
-[ArtistColorSettings]
-Measure=String
-String=[MeasureNowPlayingArtist]
-DynamicVariables=1
-IfMatch=^$
-IfMatchAction[!CommandMeasure ScriptColorChanger Playlist(#ColorPlaylist#)]
-
-; IfMatchN=ARTIST_NAME$
-; IfMatchActionN[!CommandMeasure ScriptColorChanger """Playlist("PLAYLIST_NAME")"""]
-
-IfMatch2=The Beatles$
-; DO NOT REMOVE "$" symbol, DO NOT ADD "" quotes
-IfMatchAction2=[!CommandMeasure ScriptColorChanger """Playlist("ExampleColorPlaylist")"""]
-; DO NOT REMOVE """ quotes
-
-IfMatch3=Led Zeppelin$
-IfMatchAction3=[!CommandMeasure ScriptColorChanger """Playlist("ExampleColorPlaylist")"""]
-
-IfMatch4=Coldplay$
-IfMatchAction4=[!CommandMeasure ScriptColorChanger """Playlist("ExampleColorPlaylist")"""]
-
-[AlbumColorSettings]
-Measure=String
-String=[MeasureNowPlayingAlbum]
-DynamicVariables=1
-
-; IfMatchN=ALBUM_NAME$
-; IfMatchActionN[!CommandMeasure ScriptColorChanger """Playlist("PLAYLIST_NAME")"""]
-
-IfMatch=Hotel California$
-IfMatchAction=[!CommandMeasure ScriptColorChanger """Playlist("ExampleColorPlaylist")"""]
-
-IfMatch2=The Dark Side of the Moon$
-IfMatchAction2=[!CommandMeasure ScriptColorChanger """Playlist("ExampleColorPlaylist")"""]
-
-IfMatch3=Moonmadness$
-IfMatchAction3=[!CommandMeasure ScriptColorChanger """Playlist("ExampleColorPlaylist")"""]
-
-[TrackColorSettings]
-Measure=String
-String=[MeasureNowPlayingTrack]
-DynamicVariables=1
-
-; IfMatchN=TRACK_NAME$
-; IfMatchActionN[!CommandMeasure ScriptColorChanger """Playlist("PLAYLIST_NAME")"""]
-
-IfMatch=Mr. Blue Sky$
-IfMatchAction=[!CommandMeasure ScriptColorChanger """Playlist("ExampleColorPlaylist")"""]
-
-IfMatch2=Here Comes the Sun$
-IfMatchAction2=[!CommandMeasure ScriptColorChanger """Playlist("ExampleColorPlaylist")"""]
-
-IfMatch3=Make It with You$
-IfMatchAction3=[!CommandMeasure ScriptColorChanger """Playlist("ExampleColorPlaylist")"""]
 
 [RandomColorPlaylist]
 ; For advanced users
