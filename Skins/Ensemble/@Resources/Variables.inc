@@ -1,37 +1,23 @@
 [Variables]
-BarWidth=12
-BarHeight=(#WORKAREAHEIGHT#/2)
-BarGapX=4
-BarGapY=0
 
-FFTAttack=350
-FFTDecay=350
-FFTSize=2048
-FreqMin=40
-FreqMax=16000
-; Audio settings
-; http://docs.rainmeter.net/manual-beta/plugins/audiolevel#FFTOptions
+; Refresh the skin after updating these settings!
 
-MeasureName=MeasureAudioRepeat
-MeterName=MeterBarRepeat
 
 PlayerName=CAD
 ; The interface name for the media player
 ; http://docs.rainmeter.net/manual-beta/plugins/nowplaying#playerlist
 
+SkinSizeRatio=0.5
+SkinWidth=(1000*#SkinSizeRatio#)
+
+ControlColor=255,255,255,255
+
 PrimaryFont=Segoe UI
 SecondaryFont=Segoe UI Semilight
-FontColor=255,255,255
+FontColor=255,255,255,255
 
-SkinSizeRatio=0.5
-
-Bands=96
-Sensitivity=42
-ColorIntensity=1.75
-ColorTransitionTime=3.5
-
-ColorPlaylist=AlbumArt
-; ColorPlaylist=RandomColorPlaylist
-; ColorPlaylist=ExampleColorPlaylist
-
-; See ColorPlaylists.inc file for more color options
+; Padding around the album art
+PaddingLeft=(50*#SkinSizeRatio#)
+PaddingTop=(300*#SkinSizeRatio#)
+PaddingRight=(25*#SkinSizeRatio#)
+PaddingBottom=(50*#SkinSizeRatio#)
