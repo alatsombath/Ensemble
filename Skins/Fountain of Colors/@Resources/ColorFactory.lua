@@ -1,4 +1,4 @@
--- ColorChanger v2.2, A modification of ColorChanger v1.3 by Smurfier
+-- ColorFactory v2.2, A modification of ColorChanger v1.3 by Smurfier
 -- LICENSE: Creative Commons Attribution-Non-Commercial-Share Alike 3.0
 
 local Colors,ColorsIdx,Out,VarColors,Mode,Check,Measure,Meter,random={},{},{},{},{},{},{},{},math.random
