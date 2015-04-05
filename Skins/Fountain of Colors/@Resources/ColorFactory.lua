@@ -1,4 +1,4 @@
--- ColorFactory v2.2, A modification of ColorChanger v1.3 by Smurfier
+-- ColorFactory v2.3, A modification of ColorChanger v1.3 by Smurfier
 -- LICENSE: Creative Commons Attribution-Non-Commercial-Share Alike 3.0
 
 local Colors,ColorsIdx,Out,VarColors,Mode,Check,Measure,Meter,random={},{},{},{},{},{},{},{},math.random
@@ -8,12 +8,16 @@ function Initialize()
 	BassBand=math.floor(Limit/4)
 	local MeasureName,MeterName,gsub=SKIN:ReplaceVariables("#MeasureName#"),SKIN:ReplaceVariables("#MeterName#"),string.gsub
 	for i=Index,Limit do Measure[i]=SKIN:GetMeasure((gsub(MeasureName,Sub,i))) Meter[i]=(gsub(MeterName,Sub,i)) end
-	Playlist(SKIN:ReplaceVariables("#ColorPlaylist#")) end
+	MeasureNowPlaying=SKIN:GetMeasure("MeasureNowPlaying") end
 	
 function Playlist(Name)
-	if Name=="AlbumArt" then return end
+	SKIN:Bang("[!SetOption CheckColorOverride Formula 1]")
 	local PlaylistMeasure,j=SKIN:GetMeasure(Name),1 while PlaylistMeasure:GetOption(j)~="" do j=j+1 end Total=j-1
 	AlbumArtMode,Shuffle=0,PlaylistMeasure:GetNumberOption("Shuffle") if Shuffle==1 then Idx=random(1,Total) Next=random(1,Total) else Idx,Next=1,2 end
+	local MediaControlColor=PlaylistMeasure:GetOption("MediaControlColor","255,255,255")
+		SKIN:Bang("!SetOption","MeterPrevious","ImageTint",MediaControlColor)
+		SKIN:Bang("!SetOption","MeterPlayPause","ImageTint",MediaControlColor)
+		SKIN:Bang("!SetOption","MeterNext","ImageTint",MediaControlColor)
 	local SplitColors,Sub,Index,Limit,find,gmatch={},Sub,Index,Limit,string.find,string.gmatch
 	for j=1,Total do
 		Colors[j],ColorsIdx[j],VarColors[j],SplitColors[j],Out[j],Mode[j]={},{},{},{},PlaylistMeasure:GetOption("Out"..j),PlaylistMeasure:GetOption("Mode"..j)
@@ -50,7 +54,17 @@ function AlbumArt()
 	local RandomArtColor=table.concat(AlbumColors[random(1,TotalColors)],",")
 		SKIN:Bang("!SetOption","MeterPrevious","ImageTint",RandomArtColor)
 		SKIN:Bang("!SetOption","MeterPlayPause","ImageTint",RandomArtColor)
-		SKIN:Bang("!SetOption","MeterNext","ImageTint",RandomArtColor) end
+		SKIN:Bang("!SetOption","MeterNext","ImageTint",RandomArtColor)
+		
+	SKIN:Bang("!SetOption","MeterAlbumArt","ImageName",MeasureNowPlaying:GetStringValue(),"Fountain of Colors\\Background")
+	SKIN:Bang("!SetOption MeterAlbumArt W #CURRENTCONFIGWIDTH# \"Fountain of Colors\\Background\"")
+	SKIN:Bang("!SetOption MeterAlbumArt H #CURRENTCONFIGHEIGHT# \"Fountain of Colors\\Background\"")
+	SKIN:Bang("!SetOption MeterBackgroundTint W #CURRENTCONFIGWIDTH# \"Fountain of Colors\\Background\"")
+	SKIN:Bang("!SetOption MeterBackgroundTint H (#CURRENTCONFIGHEIGHT#/3) \"Fountain of Colors\\Background\"")
+	SKIN:Bang("!SetOption MeterBackgroundTint Y (#CURRENTCONFIGHEIGHT#/1.5) \"Fountain of Colors\\Background\"")
+	SKIN:Bang("[!UpdateMeter MeterAlbumArt \"Fountain of Colors\\Background\"]")
+	SKIN:Bang("[!UpdateMeter MeterBackgroundTint \"Fountain of Colors\\Background\"]")
+	SKIN:Bang("[!Update \"Fountain of Colors\\Background\"]") end
 			
 local function Transition(j) if Colors[j] then
 	if AlbumArtMode==1 and Mode[j]=="RightToLeft" then local ColorsTable=AlbumColors[random(1,TotalColors)]
@@ -71,7 +85,7 @@ function Update() if Total then
 				
 				else local AmpValue=Amp*Measure[i]:GetValue() if AmpValue>1 then AmpValue=1 end
 				local ColorsTable,b={},1-AmpValue for k=1,3 do ColorsTable[k]=Colors1[k]*b+Colors2[k]*AmpValue end
-				if i==BassBand and AlbumArtMode==1 then SKIN:Bang("!SetOption","MeterTrackProgress","BarColor",table.concat(ColorsTable,",")) end
+				if i==BassBand then SKIN:Bang("!SetOption","MeterTrackProgress","BarColor",table.concat(ColorsTable,",")) end
 				SKIN:Bang("!SetOption",Meter[i],"BarColor",table.concat(ColorsTable,",")) end
 				
 			elseif Mode[j]=="RightToLeft" then local b=TransitionTime-Counter
