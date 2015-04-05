@@ -1,4 +1,4 @@
--- ColorFactory v2.3, A modification of ColorChanger v1.3 by Smurfier
+-- ColorFactory v2.4, A modification of ColorChanger v1.3 by Smurfier
 -- LICENSE: Creative Commons Attribution-Non-Commercial-Share Alike 3.0
 
 local Colors,ColorsIdx,Out,VarColors,Mode,Check,Measure,Meter,random={},{},{},{},{},{},{},{},math.random
@@ -54,17 +54,7 @@ function AlbumArt()
 	local RandomArtColor=table.concat(AlbumColors[random(1,TotalColors)],",")
 		SKIN:Bang("!SetOption","MeterPrevious","ImageTint",RandomArtColor)
 		SKIN:Bang("!SetOption","MeterPlayPause","ImageTint",RandomArtColor)
-		SKIN:Bang("!SetOption","MeterNext","ImageTint",RandomArtColor)
-		
-	SKIN:Bang("!SetOption","MeterAlbumArt","ImageName",MeasureNowPlaying:GetStringValue(),"Fountain of Colors\\Background")
-	SKIN:Bang("!SetOption MeterAlbumArt W #CURRENTCONFIGWIDTH# \"Fountain of Colors\\Background\"")
-	SKIN:Bang("!SetOption MeterAlbumArt H #CURRENTCONFIGHEIGHT# \"Fountain of Colors\\Background\"")
-	SKIN:Bang("!SetOption MeterBackgroundTint W #CURRENTCONFIGWIDTH# \"Fountain of Colors\\Background\"")
-	SKIN:Bang("!SetOption MeterBackgroundTint H (#CURRENTCONFIGHEIGHT#/3) \"Fountain of Colors\\Background\"")
-	SKIN:Bang("!SetOption MeterBackgroundTint Y (#CURRENTCONFIGHEIGHT#/1.5) \"Fountain of Colors\\Background\"")
-	SKIN:Bang("[!UpdateMeter MeterAlbumArt \"Fountain of Colors\\Background\"]")
-	SKIN:Bang("[!UpdateMeter MeterBackgroundTint \"Fountain of Colors\\Background\"]")
-	SKIN:Bang("[!Update \"Fountain of Colors\\Background\"]") end
+		SKIN:Bang("!SetOption","MeterNext","ImageTint",RandomArtColor) end
 			
 local function Transition(j) if Colors[j] then
 	if AlbumArtMode==1 and Mode[j]=="RightToLeft" then local ColorsTable=AlbumColors[random(1,TotalColors)]
